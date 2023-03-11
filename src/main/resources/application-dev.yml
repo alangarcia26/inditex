@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /inditex
+    
+spring:
+  application: 
+    name: inditex  
+
+db-properties:
+  jdbcUrl: jdbc:mysql://localhost:3306
+  username: root
+  password: River2290#$%&
+  driverClassName: com.mysql.cj.jdbc.Driver 
+  schema: inditex 
+    
+flyway-properties:
+  location:
+    classpath:/db/migration    
+    
+openapi:
+  validate:
+    request: true
+    response: true          
+
+  

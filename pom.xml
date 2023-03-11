@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.5.4</version>
+	<relativePath/>
+  </parent>
+  <groupId>com.inditex</groupId>
+  <artifactId>inditex</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>inditex</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <openapi.version>1.5.0</openapi.version>
+    <swagger-request-validator.version>2.1.0</swagger-request-validator.version>
+    <scc-oa3-version>2.0.2.2</scc-oa3-version>
+    <test-containers.version>1.17.3</test-containers.version>
+  </properties>
+  
+  <dependencies>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+      	<groupId>org.springframework.boot</groupId>
+      	<artifactId>spring-boot-starter-jdbc</artifactId>
+      	
+   	</dependency>	
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-test</artifactId>
+	    <scope>test</scope>
+	</dependency>	
+	<dependency>
+	    <groupId>org.springdoc</groupId>
+	    <artifactId>springdoc-openapi-ui</artifactId>
+	    <version>${openapi.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>	
+	<dependency>
+	    <groupId>org.flywaydb</groupId>
+	    <artifactId>flyway-core</artifactId>
+	</dependency>	
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency> 
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-maven-plugin</artifactId>
+  		</plugin>
+        <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <executions>
+                <execution>
+                     <phase>integration-test</phase>
+                     <configuration>
+                         <includes>
+                             <include>**/*IT</include>
+                         </includes>
+                     </configuration>                     
+                </execution>
+            </executions>
+        </plugin>  		
+  	</plugins>
+  </build>  
+  
+</project>
