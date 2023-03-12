@@ -2,8 +2,7 @@ package com.inditex.controller.exception;
 
 public enum HttpErrorCodes {
 	
-	PARAM_FORMAT_ERROR(432),
-	PARAM_INVALID(402);
+	INVALID_PARAM_ERROR(432);
 	
 	private Integer code;
 	

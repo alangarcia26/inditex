@@ -1,6 +1,6 @@
 package com.inditex.controller.exception;
 
-import static com.inditex.controller.exception.HttpErrorCodes.PARAM_FORMAT_ERROR;
+import static com.inditex.controller.exception.HttpErrorCodes.INVALID_PARAM_ERROR;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class DefaultExceptionHandler {
 				exception.getParamName(), 
 				exception.getParamValue());
 		logger.error(exception);
-		return ResponseEntity.status(PARAM_FORMAT_ERROR.getCode()).body(body);
+		return ResponseEntity.status(INVALID_PARAM_ERROR.getCode()).body(body);
 	}
 	
 }
