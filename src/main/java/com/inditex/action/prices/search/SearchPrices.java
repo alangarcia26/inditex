@@ -8,7 +8,7 @@ import com.inditex.action.prices.search.parameters.PriceSearchParameters;
 import com.inditex.action.prices.search.parameters.PriceSearchParametersToFiltersMapping;
 import com.inditex.action.prices.search.response.PriceResponse;
 import com.inditex.action.prices.search.response.PriceToPriceResponseMapping;
-import com.inditex.domain.ParamFormatException;
+import com.inditex.domain.InvalidParamException;
 import com.inditex.domain.prices.Price;
 import com.inditex.domain.prices.search.PriceSearchFilters;
 import com.inditex.domain.prices.search.PriceSearchService;
@@ -28,7 +28,7 @@ public class SearchPrices {
 		this.priceToPriceResponseMapping = priceToPriceResponseMapping;
 	}
 
-	public List<PriceResponse> search(PriceSearchParameters parameters) throws ParamFormatException {
+	public List<PriceResponse> search(PriceSearchParameters parameters) throws InvalidParamException {
 		PriceSearchFilters filters = priceSearchParametersToFiltersMapping.map(parameters);
 		List<Price> prices = priceSearchService.search(filters);
 		return priceToPriceResponseMapping.map(prices);

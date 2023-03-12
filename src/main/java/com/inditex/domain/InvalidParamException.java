@@ -1,6 +1,6 @@
 package com.inditex.domain;
 
-public class ParamFormatException extends Exception{
+public class InvalidParamException extends Throwable{
 
 	/**
 	 * 
@@ -10,7 +10,7 @@ public class ParamFormatException extends Exception{
 	private final String paramName;
 	private final String paramValue;
 	
-	public ParamFormatException(String message, String paramName, String paramValue) {
+	public InvalidParamException(String message, String paramName, String paramValue) {
 		super(message);
 		this.paramName = paramName;
 		this.paramValue = paramValue;
