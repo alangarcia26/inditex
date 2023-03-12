@@ -1,20 +1,18 @@
-package com.inditex.domain;
-
-import java.time.LocalDateTime;
+package com.inditex.domain.prices.search;
 
 public class PriceSearchFilters {
 	
-	private LocalDateTime priceApplicationDate;
+	private String priceApplicationDate;
 	private Integer brandId;
 	private Integer productId;
 
 	public PriceSearchFilters() {}
 
-	public LocalDateTime getPriceApplicationDate() {
+	public String getPriceApplicationDate() {
 		return priceApplicationDate;
 	}
 
-	public void setPriceApplicationDate(LocalDateTime priceApplicationDate) {
+	public void setPriceApplicationDate(String priceApplicationDate) {
 		this.priceApplicationDate = priceApplicationDate;
 	}
 

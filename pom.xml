@@ -20,6 +20,7 @@
     <swagger-request-validator.version>2.1.0</swagger-request-validator.version>
     <scc-oa3-version>2.0.2.2</scc-oa3-version>
     <test-containers.version>1.17.3</test-containers.version>
+    <modelmapper.version>3.1.1</modelmapper.version>
   </properties>
   
   <dependencies>
@@ -30,13 +31,18 @@
 	<dependency>
       	<groupId>org.springframework.boot</groupId>
       	<artifactId>spring-boot-starter-jdbc</artifactId>
-      	
    	</dependency>	
 	<dependency>
 	    <groupId>org.springframework.boot</groupId>
 	    <artifactId>spring-boot-starter-test</artifactId>
 	    <scope>test</scope>
 	</dependency>	
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-configuration-processor</artifactId>
+        <optional>true</optional>
+        <scope>provided</scope>
+    </dependency> 	
 	<dependency>
 	    <groupId>org.springdoc</groupId>
 	    <artifactId>springdoc-openapi-ui</artifactId>
@@ -50,12 +56,11 @@
 	    <groupId>org.flywaydb</groupId>
 	    <artifactId>flyway-core</artifactId>
 	</dependency>	
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-            <scope>provided</scope>
-        </dependency> 
+	<dependency>
+	    <groupId>org.modelmapper</groupId>
+	    <artifactId>modelmapper</artifactId>
+	    <version>${modelmapper.version}</version>
+	</dependency>	
   </dependencies>
   
   <build>

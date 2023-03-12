@@ -2,7 +2,7 @@ package com.inditex.action.prices.search.parameters;
 
 import org.springframework.stereotype.Component;
 
-import com.inditex.domain.PriceSearchFilters;
+import com.inditex.domain.prices.search.PriceSearchFilters;
 
 @Component
 public class PriceSearchParametersToFiltersMapping {

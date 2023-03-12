@@ -2,10 +2,8 @@ package com.inditex.action.prices.search.response;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class PriceResponse implements Serializable{
-	
 
 	/**
 	 * 
@@ -15,14 +13,14 @@ public class PriceResponse implements Serializable{
 	private Integer brandId;
 	private Integer productId;
 	private Integer priceList;
-	private LocalDateTime startDate;
-	private LocalDateTime endDate;
+	private String startDate;
+	private String endDate;
 	private BigDecimal price;
 	
 	public PriceResponse() {}
 	
-	public PriceResponse(Integer brandId, Integer productId, Integer priceList, LocalDateTime startDate,
-			LocalDateTime endDate, BigDecimal price) {
+	public PriceResponse(Integer brandId, Integer productId, Integer priceList, String startDate,
+			String endDate, BigDecimal price) {
 		this.brandId = brandId;
 		this.productId = productId;
 		this.priceList = priceList;
@@ -55,19 +53,19 @@ public class PriceResponse implements Serializable{
 		this.priceList = priceList;
 	}
 	
-	public LocalDateTime getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 	
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	
-	public LocalDateTime getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 	
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	
