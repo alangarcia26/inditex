@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Api will be used for everithing related with indetex project",
+    "version": "1.0.0",
+    "title": "OpenApi Indetex"
+  },
+  "paths": {
+    "/v1/prices": {
+      "get": {
+        "description": "Lookup of prices by parameters",
+        "parameters": [
+        	{
+        		"name":	"brandId",
+        		"in": "query",
+        		"schema": {        		
+        			"type": "integer"
+        		},
+        		"required": false,
+        		"example": 1
+        	},
+        	{
+        		"name":	"productId",
+        		"in": "query",
+        		"schema": {        		
+        			"type": "integer"
+        		},
+        		"required": false,
+        		"example": 1
+        	},
+        	{
+        		"name": "priceApplicationDate",
+        		"in": "query",
+        		"schema": {        		
+        			"type": "string",
+        			"format": "datetime"
+        		},
+        		"required": false,
+        		"example": "2020-12-09 12:24:16"      		
+        	}	        		        		
+        ],        
+        "responses": {
+          "200": {
+            "description": "Succesful operation: prices returned by parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricesResponse"
+                }
+              }
+            }            
+          },
+          "204": {
+            "description": "Succesful operation: prices not found"          
+          }          
+        }
+      }
+    }           
+  },
+  "components": {
+    "schemas": {
+      "PricesResponse": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceResponse"
+            },
+            "minItems": 1
+          }
+        }
+      },     
+	  "PriceResponse":{
+	  	"type": "object",
+	  	"nullable": false,
+	  	"required":[
+	  		"brandId",
+	  		"productId",
+	  		"priceList",
+	  		"startDate",
+	  		"endDate",
+	  		"price"
+	  	],
+	  	"properties":{
+          "brandId": {
+            "description": "Brand identification",
+            "type": "integer",
+            "nullable": false,
+            "example": 1
+          },
+          "productId": {
+            "description": "Product identification",
+            "type": "integer",
+            "nullable": false,
+            "example": 1
+          },
+          "priceList": {
+            "description": "Applicable price rate identifier",
+            "type": "integer",
+            "nullable": false,
+            "example": 3
+          },
+          "startDate": {
+            "description": "Start date on which the indicated price rate applies",
+            "type": "string",
+            "format": "datetime",
+            "nullable": false,
+            "example": "2018-12-09 10:00:09"
+          },
+          "endDate": {
+            "description": "End date on which the indicated price rate applies",
+            "type": "string",
+            "format": "datetime",
+            "nullable": false,
+            "example": "2020-12-09 12:24:16"
+          },
+          "price": {
+            "description": "Final sale price",
+            "type": "number",
+            "format": "double",
+            "nullable": false,
+            "example": 35.55
+          }                       		
+	  	}
+	  }  	  	  	         	  		  	  	  
+    }
+  }
+}
