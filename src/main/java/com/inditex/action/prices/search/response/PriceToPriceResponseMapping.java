@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.inditex.domain.prices.search.Price;
+import com.inditex.domain.prices.Price;
 
 @Component
 public class PriceToPriceResponseMapping {

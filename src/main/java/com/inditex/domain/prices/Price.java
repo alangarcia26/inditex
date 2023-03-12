@@ -1,4 +1,4 @@
-package com.inditex.domain.prices.search;
+package com.inditex.domain.prices;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

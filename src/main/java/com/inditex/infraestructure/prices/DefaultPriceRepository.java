@@ -1,6 +1,6 @@
 package com.inditex.infraestructure.prices;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,7 +21,7 @@ public class DefaultPriceRepository implements PriceRepository{
 	}
 
 	@Override
-	public List<PriceEntity> search(LocalDateTime priceApplicationDate, Integer brandId, Integer productId) {
+	public List<PriceEntity> search(Timestamp priceApplicationDate, Integer brandId, Integer productId) {
 		SelectBuilder selectBuilder = new SelectBuilder();
 		Query query = selectBuilder.all().from().schema("inditex").table("PRICES")
 			.where()

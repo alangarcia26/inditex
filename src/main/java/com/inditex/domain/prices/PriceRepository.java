@@ -1,12 +1,12 @@
 package com.inditex.domain.prices;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.inditex.infraestructure.prices.PriceEntity;
 
 public interface PriceRepository {
 	
-	List<PriceEntity> search(LocalDateTime priceApplicationDate, Integer brandId, Integer productId);
+	List<PriceEntity> search(Timestamp priceApplicationDate, Integer brandId, Integer productId);
 
 }

@@ -128,9 +128,15 @@ public class WhereBuilder {
 	
 	private WhereBuilder buildConditionWithParam(String name, Object param, String subquery) {
 		if(Objects.nonNull(param)) {
-			this.hasCondition = true;
-			this.query = this.query.concat(this.logicOperator).concat(SPACE).concat(subquery);
+			if(this.hasCondition) {
+				this.query = this.query.concat(this.logicOperator).concat(SPACE).concat(subquery);
+			}else {
+				this.query = this.query.concat(SPACE).concat(subquery);
+			}
 			buildParam(name, param);
+			this.hasCondition = true;
+		}else {
+			this.hasCondition = false;
 		}
 		this.logicOperator = "";
 		return this;

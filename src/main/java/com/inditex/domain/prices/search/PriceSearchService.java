@@ -1,11 +1,12 @@
 package com.inditex.domain.prices.search;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.inditex.domain.LocalDateTimeConverter;
+import com.inditex.domain.ParamFormatException;
+import com.inditex.domain.prices.Price;
 import com.inditex.domain.prices.PriceEntityToPriceMapping;
 import com.inditex.domain.prices.PriceRepository;
 import com.inditex.infraestructure.prices.PriceEntity;
@@ -15,26 +16,29 @@ public class PriceSearchService {
 	
 	private final PriceRepository repository;
 	private final PriceEntityToPriceMapping priceEntityToPriceMapping;
-	private final LocalDateTimeConverter localDateTimeConverter;
 	
 	public PriceSearchService(PriceRepository repository,
-			PriceEntityToPriceMapping priceEntityToPriceMapping,
-			LocalDateTimeConverter localDateTimeConverter) {
+			PriceEntityToPriceMapping priceEntityToPriceMapping) {
 		this.repository = repository;
 		this.priceEntityToPriceMapping = priceEntityToPriceMapping;
-		this.localDateTimeConverter = localDateTimeConverter;
 	}
 
-	public List<Price> search(PriceSearchFilters filters) {
+	public List<Price> search(PriceSearchFilters filters) throws ParamFormatException {
 		List<PriceEntity> entities = repository.search(
-				convertPriceApplicationDate(filters.getPriceApplicationDate()), 
+				convert(filters.getPriceApplicationDate()), 
 				filters.getBrandId(), 
 				filters.getProductId());
 		return priceEntityToPriceMapping.map(entities);
 	} 
 	
-	private LocalDateTime convertPriceApplicationDate(String priceApplicationDate) {
-		return localDateTimeConverter.convert(priceApplicationDate);
+	private Timestamp convert(String priceApplicationDate) throws ParamFormatException {
+		Timestamp priceApplicationDateConverted = null;
+		try {
+			priceApplicationDateConverted = Timestamp.valueOf(priceApplicationDate);
+		}catch(IllegalArgumentException e) {
+			throw new ParamFormatException(e.getMessage(), "priceApplicationDate", priceApplicationDate);
+		}
+		return priceApplicationDateConverted;
 	}
-
+	
 }
