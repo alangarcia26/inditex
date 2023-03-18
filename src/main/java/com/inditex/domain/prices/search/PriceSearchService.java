@@ -2,6 +2,8 @@ package com.inditex.domain.prices.search;
 
 import java.sql.Timestamp;
 import java.util.List;
+import static java.util.Objects.nonNull;
+
 import static java.util.Optional.ofNullable;
 
 import org.springframework.stereotype.Service;
@@ -40,22 +42,24 @@ public class PriceSearchService {
 	
 	private Timestamp convert(String priceApplicationDate) throws InvalidParamException {
 		Timestamp priceApplicationDateConverted = null;
-		try {
-			priceApplicationDateConverted = Timestamp.valueOf(priceApplicationDate);
-		}catch(IllegalArgumentException e) {
-			throw new InvalidParamException(e.getMessage(), "priceApplicationDate", priceApplicationDate);
+		if(nonNull(priceApplicationDate)) {
+			try {
+				priceApplicationDateConverted = Timestamp.valueOf(priceApplicationDate);
+			}catch(IllegalArgumentException e) {
+				throw new InvalidParamException(e.getMessage(), "priceApplicationDate", priceApplicationDate);
+			}
 		}
 		return priceApplicationDateConverted;
 	}
 	
 	private Integer checkBrand(Integer brandId) throws InvalidParamException {
-		return ofNullable(brandFindService.find(brandId))
-			.orElseThrow(() -> new InvalidParamException("Brand does not exist", "brandId", brandId.toString())).getId();
+		return nonNull(brandId) ? ofNullable(brandFindService.find(brandId))
+			.orElseThrow(() -> new InvalidParamException("Brand does not exist", "brandId", brandId.toString())).getId() : null;
 	}
 	
 	private Integer checkProduct(Integer productId) throws InvalidParamException {
-		return ofNullable(productFindService.find(productId))
-			.orElseThrow(() -> new InvalidParamException("Product does not exist", "productId", productId.toString())).getId();
+		return nonNull(productId) ? ofNullable(productFindService.find(productId))
+			.orElseThrow(() -> new InvalidParamException("Product does not exist", "productId", productId.toString())).getId() : null;
 	}
 	
 }

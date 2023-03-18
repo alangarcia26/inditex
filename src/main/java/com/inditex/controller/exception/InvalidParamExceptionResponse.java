@@ -1,14 +1,22 @@
 package com.inditex.controller.exception;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class InvalidParamExceptionResponse {
+public class InvalidParamExceptionResponse implements Serializable{
 	
-	private final String service;
-	private final LocalDateTime datetime;
-	private final String message;
-	private final String paramName;
-	private final String paramValue;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7359984918607873739L;
+	
+	private String service;
+	private LocalDateTime datetime;
+	private String message;
+	private String paramName;
+	private String paramValue;
+	
+	public InvalidParamExceptionResponse() {}
 	
 	public InvalidParamExceptionResponse(String service, String message, String paramName, String paramValue) {
 		this.service = service;

@@ -1,0 +1,7 @@
+{
+    "service": "inditex",
+    "datetime": "2023-03-18T01:09:13.276028",
+    "message": "Product does not exist",
+    "paramName": "productId",
+    "paramValue": "3"
+}

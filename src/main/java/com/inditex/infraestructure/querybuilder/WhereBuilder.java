@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static java.util.Objects.nonNull;
+
 public class WhereBuilder {
 	
 	private static String SPACE = " ";
@@ -27,6 +29,7 @@ public class WhereBuilder {
 	private String query;
 	private String logicOperator;
 	private Map<String, Object> params;
+	private boolean hasPrev;
 	private boolean hasCondition;
 	
 	
@@ -58,6 +61,7 @@ public class WhereBuilder {
 	
 	public WhereBuilder isNull(String table, String column) {
 		this.hasCondition = true;
+		this.hasPrev = true;
 		return buildConditionWithoutParam(IS_NULL.replace(TABLE, table)
 				.replace(COLUMN, column));
 	}
@@ -65,6 +69,7 @@ public class WhereBuilder {
 	
 	public WhereBuilder isNotNull(String table, String column) {
 		this.hasCondition = true;
+		this.hasPrev = true;
 		return buildConditionWithoutParam(IS_NOT_NULL.replace(TABLE, table)
 				.replace(COLUMN, column));
 	}
@@ -127,17 +132,16 @@ public class WhereBuilder {
 	
 	
 	private WhereBuilder buildConditionWithParam(String name, Object param, String subquery) {
-		if(Objects.nonNull(param)) {
-			if(this.hasCondition) {
+		if(nonNull(param)) {
+			this.hasCondition = true;
+			if(!this.logicOperator.isBlank() && this.hasPrev) {
 				this.query = this.query.concat(this.logicOperator).concat(SPACE).concat(subquery);
 			}else {
 				this.query = this.query.concat(SPACE).concat(subquery);
 			}
 			buildParam(name, param);
-			this.hasCondition = true;
-		}else {
-			this.hasCondition = false;
 		}
+		this.hasPrev = nonNull(param);
 		this.logicOperator = "";
 		return this;
 	}

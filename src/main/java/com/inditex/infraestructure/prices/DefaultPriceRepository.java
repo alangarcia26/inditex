@@ -33,9 +33,9 @@ public class DefaultPriceRepository implements PriceRepository{
 			.and()
 			.equal("PRICES", "PRODUCT_ID", "PRODUCT_ID", productId)
 			.and()
-			.lesser("PRICES", "START_DATE", "START_DATE", priceApplicationDate)
+			.lesserEqual("PRICES", "START_DATE", "START_DATE", priceApplicationDate)
 			.and()
-			.greater("PRICES", "END_DATE", "END_DATE", priceApplicationDate)
+			.greaterEqual("PRICES", "END_DATE", "END_DATE", priceApplicationDate)
 			.build();
 		
 		return jdbcTemplate.query(
