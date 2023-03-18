@@ -9,10 +9,12 @@ public class GetCalls<T> {
 	
 	private String url;
 	private Class<T> classType;
+	private TestRestTemplate restTemplate;
 	
 	public GetCalls(String url, Class<T> classType) {
 		this.url = url;
 		this.classType = classType;
+		this.restTemplate = new TestRestTemplate();
 	}
 	
 	public ResponseEntity<T> call(){
@@ -20,8 +22,7 @@ public class GetCalls<T> {
 	}
 	
 	private ResponseEntity<T> exchange(HttpEntity<String> request){
-		TestRestTemplate restTemplate = new TestRestTemplate();
-		return restTemplate.exchange(
+		return this.restTemplate.exchange(
                 this.url,
                 HttpMethod.GET, 
                 request, 
