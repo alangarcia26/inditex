@@ -6,11 +6,9 @@ public class AllBuilder {
 	
 	private String query;
 	
-	
 	public AllBuilder() {
 		this.query = ALL;
 	}
-	
 	
 	public FromBuilder from() {
 		return new FromBuilder(this.query);

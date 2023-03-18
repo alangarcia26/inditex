@@ -46,18 +46,15 @@ public class WhereBuilder {
 		this.logicOperator = "";
 	}
 	
-	
 	public WhereBuilder and() {
 		this.logicOperator = SPACE.concat(AND);
 		return this;
 	}
 	
-	
 	public WhereBuilder or() {
 		this.logicOperator = SPACE.concat(OR);
 		return this;
 	}
-	
 	
 	public WhereBuilder isNull(String table, String column) {
 		this.hasCondition = true;
@@ -66,7 +63,6 @@ public class WhereBuilder {
 				.replace(COLUMN, column));
 	}
 	
-	
 	public WhereBuilder isNotNull(String table, String column) {
 		this.hasCondition = true;
 		this.hasPrev = true;
@@ -74,48 +70,40 @@ public class WhereBuilder {
 				.replace(COLUMN, column));
 	}
 	
-	
 	public WhereBuilder equal(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, EQUAL.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
-	
 	
 	public WhereBuilder notEqual(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, NOT_EQUAL.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
 	
-	
 	public WhereBuilder lesser(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, LESSER.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
-	
 	
 	public WhereBuilder greater(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, GREATER.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
 	
-	
 	public WhereBuilder lesserEqual(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, LESSER_EQUAL.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
-	
 	
 	public WhereBuilder greaterEqual(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, GREATER_EQUAL.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
 	
-	
 	public WhereBuilder like(String table, String column, String paramName, Object param) {
 		return buildConditionWithParam(paramName, param, LIKE.replace(TABLE, table)
 				.replace(COLUMN, column).replace(PARAM, paramName));
 	}
-	
 	
 	public Query build() {
 		if(!this.hasCondition) {
@@ -124,12 +112,10 @@ public class WhereBuilder {
 		return createQuery();
 	}
 	
-	
 	private WhereBuilder buildConditionWithoutParam(String subquery) {
 		this.query = this.query.concat(this.logicOperator).concat(SPACE).concat(subquery);
 		return this;
 	}
-	
 	
 	private WhereBuilder buildConditionWithParam(String name, Object param, String subquery) {
 		if(nonNull(param)) {
@@ -146,14 +132,12 @@ public class WhereBuilder {
 		return this;
 	}
 	
-	
 	private void buildParam(String name, Object param) {
 		if(Objects.isNull(this.params)) {
 			this.params = new HashMap<String, Object>();
 		}
 		this.params.put(name, param);
 	}
-	
 	
 	private Query createQuery() {
 		Query query = new Query();

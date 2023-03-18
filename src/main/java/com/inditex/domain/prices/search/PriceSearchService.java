@@ -24,8 +24,10 @@ public class PriceSearchService {
 	private final ProductFindService productFindService;
 	private final PriceEntityToPriceMapping priceEntityToPriceMapping;
 	
-	public PriceSearchService(PriceRepository repository, BrandFindService brandFindService,
-			ProductFindService productFindService, PriceEntityToPriceMapping priceEntityToPriceMapping) {
+	public PriceSearchService(PriceRepository repository, 
+			BrandFindService brandFindService,
+			ProductFindService productFindService, 
+			PriceEntityToPriceMapping priceEntityToPriceMapping) {
 		this.repository = repository;
 		this.brandFindService = brandFindService;
 		this.productFindService = productFindService;
@@ -34,13 +36,13 @@ public class PriceSearchService {
 
 	public List<Price> search(PriceSearchFilters filters) throws InvalidParamException {
 		List<PriceEntity> entities = repository.search(
-				convert(filters.getPriceApplicationDate()), 
+				convertPriceApplicationDate(filters.getPriceApplicationDate()), 
 				checkBrand(filters.getBrandId()), 
 				checkProduct(filters.getProductId()));
 		return priceEntityToPriceMapping.map(entities);
 	} 
 	
-	private Timestamp convert(String priceApplicationDate) throws InvalidParamException {
+	private Timestamp convertPriceApplicationDate(String priceApplicationDate) throws InvalidParamException {
 		Timestamp priceApplicationDateConverted = null;
 		if(nonNull(priceApplicationDate)) {
 			try {

@@ -15,7 +15,6 @@ public class Query {
 		this.params = params;
 	}
 	
-	
 	public String getQuery() {
 		return query;
 	}
@@ -23,7 +22,6 @@ public class Query {
 	public void setQuery(String query) {
 		this.query = query;
 	}
-	
 	
 	public Map<String, Object> getParams() {
 		return params;
