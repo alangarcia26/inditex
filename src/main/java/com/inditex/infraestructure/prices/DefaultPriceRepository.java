@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.inditex.domain.prices.PriceRepository;
+import static com.inditex.infraestructure.Tables.PRICES;
 import com.inditex.infraestructure.querybuilder.Query;
 import com.inditex.infraestructure.querybuilder.SelectBuilder;
 
@@ -27,7 +28,7 @@ public class DefaultPriceRepository implements PriceRepository{
 	@Override
 	public List<PriceEntity> search(Timestamp priceApplicationDate, Integer brandId, Integer productId) {
 		SelectBuilder selectBuilder = new SelectBuilder();
-		Query query = selectBuilder.all().from().schema(this.schema).table("PRICES")
+		Query query = selectBuilder.all().from().schema(this.schema).table(PRICES.name())
 			.where()
 			.equal("PRICES", "BRAND_ID", "BRAND_ID", brandId)
 			.and()
